@@ -1,0 +1,17 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+
+# Step 1: Vectorize the 'text' column
+cv = TfidfVectorizer(max_features=1000, ngram_range=(1,2))
+vect_form = cv.fit_transform(df['text'])
+
+# Step 2: Create DataFrame from TF-IDF features
+df1 = pd.DataFrame(vect_form.toarray(), columns=cv.get_feature_names_out())
+
+# Step 3: Drop the columns
+columns_to_drop = ['text', 'tokens', 'cleaned_text']
+df.drop(columns=[col for col in columns_to_drop if col in df.columns], inplace=True)
+
+
+# Step 4: Combine TF-IDF features with the rest of the dataset
+main_df = pd.concat([df1, df], axis=1)
