@@ -24,3 +24,6 @@ Fake job postings are a growing threat in online recruitment. In this project, I
 ```bash
 git clone https://github.com/sourav894/fake-job-detection.git
 cd fake-job-detection
+
+
+  
